@@ -1,0 +1,60 @@
+﻿@using Models;
+@using ViewModel;
+@model AddProductViewModel;
+@{
+    List<SelectListItem> temp = ViewData["Categories"] as List<SelectListItem>;
+    AddProductViewModel prd = ViewData["product"] as AddProductViewModel;
+}
+@section SidebarSection{
+    <ul class="list-group list-group-item-dark">
+        <li class="list-group-item active"><a href=" /Product/GetAll">Get All  </a></li>
+        <li class="list-group-item"><i class="fa fa-paypal"></i>Salles</li>
+        <li class="list-group-item"> <i class="fa fa-cart-shopping"></i>Purchases</li>
+    </ul>
+}
+
+<form asp-controller="product" asp-action="EditProduct" method="post">
+    <div class="form-group">
+        <input asp-for="ID"   class="form-control  hidden>
+    </div>
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group mt-2">
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CategoryID" class="form-label"></label>
+        <select class="form-control" asp-for="CategoryID" asp-items="temp">
+        </select>
+        <span asp-validation-for="CategoryID" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="Quantity"></label>
+        <input class="form-control" asp-for="Quantity" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea class="form-control" asp-for="Description"></textarea>
+    </div>
+
+    @* <div id="SeeOldImages">
+        <h1 class="lead">Old Images</h1>
+        <p class="text-muted">
+            these images will still your Product images by default if you want to remove them click Here
+            <span class="btn btn-danger" onclick="remove()">Remove</span>
+        </p>
+        <div class="d-flex">
+            @foreach (string img in Model.ImageUrl)
+            {
+                <img src="/images/@img" height="200px" />
+            }
+        </div>
+    </div> *@
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

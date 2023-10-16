@@ -1,0 +1,54 @@
+﻿@using Models;
+@using ViewModel;
+@{
+    List<SelectListItem> temp = ViewData["Categories"] as List<SelectListItem>;
+}
+@model AddProductViewModel
+
+@section SidebarSection{
+    <ul class="list-group list-group-item-dark">
+        <li class="list-group-item active"><a href=" /Product/GetAll">Get All  </a></li>
+        <li class="list-group-item"><i class="fa fa-paypal"></i>Salles</li>
+        <li class="list-group-item"> <i class="fa fa-cart-shopping"></i>Purchases</li>
+    </ul>
+}
+
+<form asp-controller="product" asp-action="AddProduct" method="post">
+    <div class="form-group" >
+        <label  asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" >
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group mt-2">
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CategoryID" class="form-label"></label>
+        <select class="form-control" asp-for="CategoryID" asp-items="temp">
+        </select>
+        <span asp-validation-for="CategoryID" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="Quantity"></label>
+        <input asp-for="Quantity"  class="form-control" />
+        <span asp-validation-for="Quantity" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea class="form-control" asp-for="Description"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="Images" class="form-label"></label>
+        <input asp-for="Images" class="form-control" multiple>
+        
+
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

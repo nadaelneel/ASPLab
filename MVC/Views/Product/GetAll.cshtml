@@ -1,0 +1,32 @@
+﻿@using Models;
+@using ViewModel;
+@{
+    List<ProductViewModel> products = ViewData["Products"] as List<ProductViewModel>;
+}
+
+@section SidebarSection{
+    <ul class="list-group list-group-item-dark">
+        <li class="list-group-item active"><a href=" /Product/AddForm">Add New </a></li>
+        <li class="list-group-item"><i class="fa fa-paypal"></i>Salles</li>
+        <li class="list-group-item"> <i class="fa fa-cart-shopping"></i>Purchases</li>
+    </ul>
+}
+<div class="d-flex justify-content-around">
+    @foreach(var pro in products)
+    {
+        <div class="card" style="width: 18rem;">
+            <img src="/Images/@pro.Images.FirstOrDefault()" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">@pro.Name</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">@pro.Price</p>
+                <a href="Product/GetDetails/@pro.ID" class="btn btn-sm btn-primary">Deatails</a>
+                <a href="Product/EditForm/@pro.ID" class="btn btn-sm btn-primary">Edit</a>
+
+                <a href="Product/Delete/@pro.ID" class="btn btn-sm btn-primary">Delete</a>
+
+            </div>
+        </div>
+    }
+    
+</div>
