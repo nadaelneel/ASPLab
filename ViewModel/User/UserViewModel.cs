@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ViewModel
 {
-    public class UserSignUpViewModel
+    public class UserViewModel
     {
-        [Required , StringLength (50,ErrorMessage ="Must be less than 50 and more than 3 char", MinimumLength =3)]
+        [Required, StringLength(50, ErrorMessage = "Must be less than 50 and more than 3 char", MinimumLength = 3)]
         public string FirstName { get; set; }
 
         [Required, StringLength(50, MinimumLength = 3)]
@@ -28,7 +28,7 @@ namespace ViewModel
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required, StringLength(20 , MinimumLength =5)]
+        [Required, StringLength(20, MinimumLength = 5)]
 
         [DataType(DataType.Password)]
         public string Password { get; set; }
@@ -39,5 +39,6 @@ namespace ViewModel
         [Compare("Password")]
         public string ConfirmPassword { get; set; }
 
+        public string Role { get; set; } = "User";
     }
 }

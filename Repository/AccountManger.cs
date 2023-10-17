@@ -32,5 +32,14 @@ namespace Repository
         {
             await signInManager.SignOutAsync();
         }
+
+        public List<UserViewModel> Get()
+        {
+            return GetAll().Select(u =>u.ToModel()).ToList();
+        }
+        public UserViewModel GetUser(string email)
+        {
+            return  Get().Where(i=>i.Email == email).FirstOrDefault();
+        }
     }
 }

@@ -3,6 +3,7 @@
 
 @{
     Layout = null;
+    var list = ViewData["list"] as List<SelectListItem>;
 }
 <!Doctype html>
 <html>
@@ -52,6 +53,14 @@
             <input asp-for="ConfirmPassword" class="form-control" multiple>
             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
         </div>
+
+      @*   
+        <div>
+                <label asp-for="Role" class="form-label"></label>
+                <select asp-for="Role" class="form-control" asp-items="list"></select>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div> *@
+
         <button type="submit" class="btn btn-primary">Sign up</button>
     </form>
 </div>

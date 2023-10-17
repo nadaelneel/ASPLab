@@ -41,6 +41,8 @@ public class Program
         builder.Services.AddScoped(typeof(CategoryManger));
         builder.Services.AddScoped(typeof(UniteOfWork));
         builder.Services.AddScoped(typeof(AccountManger));
+        builder.Services.AddScoped(typeof(RoleManager));
+        //builder.Services.AddScoped<IUserClaimsPrincipalFactory<User>, UesrClaimsFactory>();
         builder.Services.AddControllersWithViews();
 
         var App = builder.Build();

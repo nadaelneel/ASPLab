@@ -1,6 +1,7 @@
-﻿
-
-
+﻿﻿@{
+    var temp2 = User.Claims;
+    var temp = User.Identities;
+}
 <html>
 <head>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
@@ -21,6 +22,22 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" asp-action="getall" asp-controller="product" >Product</a>
                     </li>
+                    @if (User.HasClaim(i => i.Value == "Vendor" || i.Value == "Admin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Product" asp-action="Add">Add Product</a>
+                        </li>
+
+                    }
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Account" asp-action="AddRoleToUser">All User</a>
+                    </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Role" asp-action="Add">Add Role</a>
+                        </li>
+
+         
                     <li class="nav-item">
                         <a class="nav-link" asp-action="contactus" asp-controller="home">Contact Us</a>
                     </li>
@@ -47,6 +64,7 @@
                         </li>
 
                     }
+
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

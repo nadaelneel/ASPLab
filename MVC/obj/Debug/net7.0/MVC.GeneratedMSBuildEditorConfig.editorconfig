@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\iti\net track\.net track\ASP.Net\Day2\lab\MVC\MVC
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/iti/net track/.net track/ASP.Net/Day2/lab/MVC/MVC/Views/Account/AddRoleToUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBZGRSb2xlVG9Vc2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/iti/net track/.net track/ASP.Net/Day2/lab/MVC/MVC/Views/Account/SignIn.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxTaWduSW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -54,6 +58,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/iti/net track/.net track/ASP.Net/Day2/lab/MVC/MVC/Views/Product/search.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxzZWFyY2guY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/iti/net track/.net track/ASP.Net/Day2/lab/MVC/MVC/Views/Role/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZVxBZGQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/iti/net track/.net track/ASP.Net/Day2/lab/MVC/MVC/Views/Shared/_Layout.cshtml]

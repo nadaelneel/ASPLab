@@ -1,18 +1,21 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Repository;
 using ViewModel;
+using Models;
 
 namespace MVC.Controllers
 {
     public class AccountController : Controller
     {
         AccountManger AccountManger;
-
-        public AccountController(AccountManger accountManger)
+        RoleManager RoleManager;
+        public AccountController(AccountManger accountManger , RoleManager _RoleManager)
         {
             AccountManger = accountManger;
+            RoleManager = _RoleManager;
         }
 
         [HttpGet]
@@ -76,5 +79,33 @@ namespace MVC.Controllers
             AccountManger.SignOut();
             return RedirectToAction("SignIn");
         }
+
+        [HttpGet]
+        public IActionResult AddRoleToUser()
+        {
+            ViewData["Users"] =  AccountManger.Get();
+
+            return View();
+
+        }
+        [HttpPost]
+
+        public IActionResult AddRoleToUser(string email , string role)
+        {
+            UserViewModel u = AccountManger.GetUser(email);
+
+           u.Role = role;
+
+            return View();
+        }
+        private List<SelectListItem> RoleList()
+        {
+            return RoleManager.GetAll().Select(r => new SelectListItem()
+            {
+                Value = r.Name,
+                Text = r.Name
+            }).ToList();
+        }
     }
 }
+

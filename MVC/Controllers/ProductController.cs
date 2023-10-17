@@ -9,7 +9,7 @@ using ViewModel;
 
 namespace MVC.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class ProductController : Controller
     {
         public ProductManger ProductManger;
