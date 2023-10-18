@@ -1,0 +1,54 @@
+﻿@{
+    Layout = null;
+}
+
+@using ViewModel
+@model UserChangePasswordViewModel
+
+<!Doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <title>Sign In</title>
+</head>
+<body>
+    <div class="container">
+
+        <h1 class="display-1">Change Password</h1>
+
+        @if (ViewBag.Success == true)
+        {
+            <div class="alert alert-success d-flex align-items-center" role="alert">
+
+                <div>
+                    Successfully Changed Your Password
+                    <br>
+                    <a asp-action="SignIn" asp-controller="Account">Login </a>
+                    <br>
+                    <a asp-action="index" asp-controller="Home">Home</a>
+                </div>
+            </div>
+        }
+
+        <form asp-action="ChangePassword" asp-controller="Account" method="post">
+            <div asp-validation-summary="All"></div>
+            <div class="mb-3">
+                <label asp-for="CurrentPassword" class="form-label"></label>
+                <input asp-for="CurrentPassword" class="form-control">
+                <span asp-validation-for="CurrentPassword" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="NewPassword" class="form-label"></label>
+                <input asp-for="NewPassword" class="form-control">
+                <span asp-validation-for="NewPassword" class="text-danger"></span>
+            </div>
+            <div class="mb-3 row">
+                <label asp-for="ConfirmNewPassword" class="form-label"></label>
+                <input asp-for="ConfirmNewPassword" class="form-control">
+                <span asp-validation-for="ConfirmNewPassword" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+    </div>
+</body>
+</html>

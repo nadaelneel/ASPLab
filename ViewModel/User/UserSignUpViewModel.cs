@@ -28,6 +28,9 @@ namespace ViewModel
         [EmailAddress]
         public string Email { get; set; }
 
+        [Required, StringLength(50) , Compare("Email")]
+        [EmailAddress]
+        public string ConfirmEmail { get; set; }
         [Required, StringLength(20 , MinimumLength =5)]
 
         [DataType(DataType.Password)]

@@ -18,41 +18,54 @@
     <h1 class="display-1">Sing Up</h1>
     <form asp-action="SignUp" asp-controller="Account" method="post">
         <div asp-validation-summary="All"></div>
-        <div class="mb-3">
-            <label asp-for="FirstName" class="form-label"></label>
-            <input asp-for="FirstName" class="form-control">
-            <span asp-validation-for="FirstName" class="text-danger"></span>
+        <div class="row">
+                <div class="mb-3 col-6">
+                    <label asp-for="FirstName" class="form-label"></label>
+                    <input asp-for="FirstName" class="form-control">
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="mb-3 col-6">
+                    <label asp-for="LastName" class="form-label"></label>
+                    <input asp-for="LastName" class="form-control">
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
         </div>
-        <div class="mb-3">
-            <label asp-for="LastName" class="form-label"></label>
-            <input asp-for="LastName" class="form-control">
-            <span asp-validation-for="LastName" class="text-danger"></span>
-        </div>
-        <div class="mb-3">
-            <label asp-for="UserName" class="form-label"></label>
-            <input asp-for="UserName" class="form-control">
-            <span asp-validation-for="UserName" class="text-danger"></span>
-        </div>
-        <div class="mb-3">
-            <label asp-for="NationalID" class="form-label"></label>
-            <input asp-for="NationalID" class="form-control">
-            <span asp-validation-for="NationalID" class="text-danger"></span>
-        </div>
-        <div class="mb-3">
-            <label asp-for="Email" class="form-label"></label>
-            <input asp-for="Email" class="form-control" multiple>
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-        <div class="mb-3">
-            <label asp-for="Password" class="form-label"></label>
-            <input asp-for="Password" class="form-control" multiple>
-            <span asp-validation-for="Password" class="text-danger"></span>
-        </div>
-        <div class="mb-3">
-            <label asp-for="ConfirmPassword" class="form-label"></label>
-            <input asp-for="ConfirmPassword" class="form-control" multiple>
-            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-        </div>
+       <div class="row">
+                <div class="mb-3  col-6">
+                    <label asp-for="UserName" class="form-label"></label>
+                    <input asp-for="UserName" class="form-control">
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="mb-3 col-6">
+                    <label asp-for="NationalID" class="form-label"></label>
+                    <input asp-for="NationalID" class="form-control">
+                    <span asp-validation-for="NationalID" class="text-danger"></span>
+                </div>
+       </div>
+      <div class="row">
+                <div class="mb-3 col-6">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" multiple>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3 col-6">
+                    <label asp-for="ConfirmEmail" class="form-label"></label>
+                    <input asp-for="ConfirmEmail" class="form-control" multiple>
+                    <span asp-validation-for="ConfirmEmail" class="text-danger"></span>
+                </div>
+      </div>
+       <div class="row">
+                <div class="mb-3 col-6">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control" multiple>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="mb-3 col-6">
+                    <label asp-for="ConfirmPassword" class="form-label"></label>
+                    <input asp-for="ConfirmPassword" class="form-control" multiple>
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+       </div>
 
       @*   
         <div>

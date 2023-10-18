@@ -20,12 +20,16 @@ public class Program
         });
         //
         builder.Services.AddIdentity<User, IdentityRole>(i => {
+
+            i.Lockout.MaxFailedAccessAttempts = 2;
+            i.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(2);
             i.User.RequireUniqueEmail = true;
             i.SignIn.RequireConfirmedPhoneNumber = false;
             i.SignIn.RequireConfirmedEmail = false;
             i.SignIn.RequireConfirmedAccount = false;
+            i.Tokens.PasswordResetTokenProvider = TokenOptions.DefaultEmailProvider;
         })
-           .AddEntityFrameworkStores<MyDBContext>();
+           .AddEntityFrameworkStores<MyDBContext>().AddDefaultTokenProviders();
         builder.Services.Configure<IdentityOptions>(i =>
         {
             i.Password.RequireNonAlphanumeric = false;

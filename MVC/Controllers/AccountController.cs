@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Repository;
 using ViewModel;
 using Models;
+using System.Net.Mail;
+using System.Net;
+using System.Security.Claims;
 
 namespace MVC.Controllers
 {
@@ -72,6 +75,8 @@ namespace MVC.Controllers
             return View();
         }
 
+        
+
         [HttpGet]
         
         public IActionResult SignOut()
@@ -79,23 +84,127 @@ namespace MVC.Controllers
             AccountManger.SignOut();
             return RedirectToAction("SignIn");
         }
+        public IActionResult AddRoleToUser2()
+        {
+            ViewData["Users"] = AccountManger.Get();
+            return View();
+        }
 
         [HttpGet]
         public IActionResult AddRoleToUser()
         {
-            ViewData["Users"] =  AccountManger.Get();
+            ViewData["Users"] = AccountManger.Get();
 
             return View();
 
         }
+
+
         [HttpPost]
-
-        public IActionResult AddRoleToUser(string email , string role)
+        public async Task<IActionResult> AddRoleToUser(string email , string role)
         {
-            UserViewModel u = AccountManger.GetUser(email);
+            if (ModelState.IsValid)
+            {
+                var result = await AccountManger.AssignRolesToUser(email, role);
+                if(result.Succeeded)
+                {
+                    return RedirectToAction("AddRoleToUser2");
+                }
+            }
+            
 
-           u.Role = role;
+            return View();
+        }
 
+        [HttpGet]
+        [Authorize]
+        public IActionResult ChangePassword()
+        {
+
+            ViewBag.Success = false;
+            return View();
+        }
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> ChangePassword(UserChangePasswordViewModel viewModel)
+        {
+            viewModel.Id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (ModelState.IsValid)
+            {
+                var result = await AccountManger.ChangePassword(viewModel);
+                if (result.Succeeded)
+                {
+                    ViewBag.Success = true;
+                }
+                return View();
+            }
+            ViewBag.Success = false;
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult ForgotPassword()
+        {
+            ViewBag.Success = false;
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(string Email)
+        {
+            if (!string.IsNullOrEmpty(Email))
+            {
+                string code = await AccountManger.GetForgotPasswordCode(Email);
+                if (string.IsNullOrEmpty(code))
+                {
+                    ViewBag.Success = false;
+                }
+                else
+                {
+                    //Send Mail With Code
+                    var client = new SmtpClient("sandbox.smtp.mailtrap.io", 2525)
+                    {
+                        Credentials = new NetworkCredential("f8f4b090146a2c", "ba1c9259968370"),
+                        EnableSsl = true
+                    };
+                     client.Send("from@example.com", Email, "Forget Password Verification", $"Your Code is {code}");
+                    ViewBag.Success = true;
+                }
+                return View();
+            }
+            ViewBag.Success = false;
+            return View();
+        }
+        [HttpGet]
+        public IActionResult ForgotPasswordVerification()
+        {
+            ViewBag.Success = false;
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ForgotPasswordVerification(UserForgotPasswordViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await AccountManger.ForgotPassword(viewModel);
+                if (!result.Succeeded)
+                {
+                    ViewBag.Success = false;
+                }
+                else
+                {
+                    ViewBag.Success = true;
+                }
+                return View();
+            }
+            ViewBag.Success = false;
+            return View();
+        }
+
+        [HttpGet]
+        
+        public IActionResult ChangeEmail()
+        {
+            ViewBag.Success = false;
             return View();
         }
         private List<SelectListItem> RoleList()

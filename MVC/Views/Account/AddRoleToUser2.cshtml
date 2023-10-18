@@ -1,0 +1,35 @@
+﻿@using ViewModel;
+
+
+@{
+    Layout = "_Layout";
+    List<UserViewModel> users = ViewData["Users"] as List<UserViewModel>;
+}
+@section SidebarSection{
+}
+    <table class="table w-75">
+        <thead class="thead-dark">
+            <tr>
+
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">National Id</th>
+                <th scope="col">Role</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in users)
+            {
+                <tr>
+                    <td scope="row">@item.FirstName @item.LastName</td>
+                    <td scope="row" asp-formaction=""> @item.Email</td>
+                    <td scope="row">@item.NationalID</td>
+                <td scope="row">@item.Role</td>
+                 
+                </tr>
+            }
+        </tbody>
+
+    </table>
+

@@ -41,5 +41,75 @@ namespace Repository
         {
             return  Get().Where(i=>i.Email == email).FirstOrDefault();
         }
+        public async Task<IdentityResult> ChangePassword(UserChangePasswordViewModel viewModel)
+        {
+            var user = await userManager.FindByIdAsync(viewModel.Id);
+            if (user != null)
+            {
+                return await userManager.ChangePasswordAsync(user, viewModel.CurrentPassword, viewModel.NewPassword);
+            }
+            return IdentityResult.Failed(new IdentityError()
+            {
+                Description = "User Not Found"
+            });
+        }
+
+        public async Task<IdentityResult> ChangeEmail(UserChangeEmailViewModel viewModel)
+        {
+            var user = await userManager.FindByIdAsync(viewModel.Id);
+            if (user != null)
+            {
+                return await userManager.ChangeEmailAsync(user , viewModel.NewEmail , "" );
+
+                
+            }
+            return IdentityResult.Failed(new IdentityError()
+            {
+                Description = "User Not Found"
+            });
+        }
+
+        public async Task<string> GetForgotPasswordCode(string Email)
+        {
+            var user = await userManager.FindByEmailAsync(Email);
+            if (user != null)
+            {
+                var code = await userManager.GeneratePasswordResetTokenAsync(user);
+                return code;
+            }
+            return string.Empty;
+        }
+        public async Task<IdentityResult> ForgotPassword(UserForgotPasswordViewModel viewModel)
+        {
+            var user = await userManager.FindByEmailAsync(viewModel.Email);
+            if (user != null)
+            {
+                return await userManager.ResetPasswordAsync(user, viewModel.Code, viewModel.NewPassword);
+            }
+            return IdentityResult.Failed(new IdentityError()
+            {
+                Description = "User Not Found"
+            });
+        }
+        public async Task<IdentityResult> AssignRolesToUser(string email, string role)
+        {
+            var user = await userManager.FindByEmailAsync(email);
+            if (user != null)
+            {
+                return await userManager.AddToRoleAsync(user, role);
+            }
+            return new IdentityResult();
+        }
+
+        //public async Task<IdentityResult> AssignRolesToUser(string email, string role)
+        //{
+        //    var user = await userManager.FindByEmailAsync(email);
+        //    if (user != null)
+        //    {
+        //        return await userManager.AddToRoleAsync(user, role);
+        //    }
+        //    return new IdentityResult();
+        //}
+
     }
 }
