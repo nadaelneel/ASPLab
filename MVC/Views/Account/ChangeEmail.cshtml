@@ -1,0 +1,42 @@
+﻿\@{
+    Layout = null;
+}
+
+@using ViewModel
+@model UserChangeEmailViewModel;
+
+<!Doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <title>Chang Email</title>
+</head>
+<body>
+    <div class="container">
+
+        <h1 class="display-1">Change Email</h1>
+
+        @if (ViewBag.Success == true)
+        {
+            <div class="alert alert-success d-flex align-items-center" role="alert">
+
+                <div>
+                    Successfully Changed Your Email
+                    <br>
+                    <a asp-action="SignIn" asp-controller="Account">Login </a>
+                </div>
+            </div>
+        }
+
+        <form asp-action="ChangeEmail" asp-controller="Account" method="post">
+            <div asp-validation-summary="All"></div>
+            <div class="mb-3">
+                <label asp-for="NewEmail" class="form-label"></label>
+                <input asp-for="NewEmail" class="form-control">
+                <span asp-validation-for="NewEmail" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+    </div>
+</body>
+</html>

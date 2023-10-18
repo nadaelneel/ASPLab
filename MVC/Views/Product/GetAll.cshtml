@@ -7,11 +7,11 @@
 @section SidebarSection{
     <ul class="list-group list-group-item-dark">
         <li class="list-group-item active"><a href=" /Product/AddForm">Add New </a></li>
-        <li class="list-group-item"><i class="fa fa-paypal"></i>Salles</li>
+        <li class="list-group-item"><i class="fa fa-paypal"></i><a href=" /Product/search">Search</a></li>
         <li class="list-group-item"> <i class="fa fa-cart-shopping"></i>Purchases</li>
     </ul>
 }
-<div class="d-flex justify-content-around">
+<div class="d-flex justify-content-around flex-wrap">
     @foreach(var pro in products)
     {
         <div class="card" style="width: 18rem;">

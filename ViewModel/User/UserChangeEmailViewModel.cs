@@ -13,6 +13,10 @@ namespace ViewModel
 
         [Required, StringLength(50)]
         [EmailAddress]
+        public string CurrentEmail { get; set; }
+
+        [Required, StringLength(50)]
+        [EmailAddress]
         public string NewEmail { get; set; }
 
 

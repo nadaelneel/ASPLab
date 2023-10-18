@@ -98,6 +98,7 @@ namespace MVC.Controllers
             string Name ,
             double Price ,
             string CategoryName,
+            int CategoryID =0 ,
             string orderBy  ="ID" ,
             bool isAssending = true ,
             int PageSize = 3,
@@ -105,7 +106,7 @@ namespace MVC.Controllers
         {
             ViewData["Categories"] = GetCategories();
             
-            var data = ProductManger.Search(ID, Name, Price, CategoryName, orderBy,isAssending,PageSize,Pageindex);
+            var data = ProductManger.Search(ID, Name, Price, CategoryName,CategoryID, orderBy,isAssending,PageSize,Pageindex);
 
             return View(data);
         }

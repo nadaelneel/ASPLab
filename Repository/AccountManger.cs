@@ -54,20 +54,21 @@ namespace Repository
             });
         }
 
-        public async Task<IdentityResult> ChangeEmail(UserChangeEmailViewModel viewModel)
-        {
-            var user = await userManager.FindByIdAsync(viewModel.Id);
-            if (user != null)
-            {
-                return await userManager.ChangeEmailAsync(user , viewModel.NewEmail , "" );
+        //public async Task<IdentityResult> ChangeEmail(UserChangeEmailViewModel viewModel)
+        //{
+        //    ////var user = await userManager.GetUsersForClaimAsync();
+        //    //if (user != null)
+        //    //{
+        //    //    var token = userManager.GenerateChangeEmailTokenAsync(user, viewModel.NewEmail);
 
-                
-            }
-            return IdentityResult.Failed(new IdentityError()
-            {
-                Description = "User Not Found"
-            });
-        }
+        //    //    return await userManager.ChangeEmailAsync(user , viewModel.NewEmail , token.ToString() );
+           
+        //    //}
+        //    //return IdentityResult.Failed(new IdentityError()
+        //    //{
+        //    //    Description = "User Not Found"
+        //    //});
+        //}
 
         public async Task<string> GetForgotPasswordCode(string Email)
         {

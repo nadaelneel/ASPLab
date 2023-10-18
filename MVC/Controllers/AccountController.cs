@@ -207,6 +207,26 @@ namespace MVC.Controllers
             ViewBag.Success = false;
             return View();
         }
+
+        [HttpPost]
+
+        //public async Task<IActionResult> ChangeEmail(UserChangeEmailViewModel viewModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //       var res = await AccountManger.ChangeEmail(viewModel);
+        //        if (res.Succeeded)
+        //        {
+        //            ViewBag.Success = true;
+        //            return RedirectToAction("SignIn");
+        //        }
+
+        //        return View();
+        //    }
+
+        //        ViewBag.Success = false;
+        //        return View();
+        //}
         private List<SelectListItem> RoleList()
         {
             return RoleManager.GetAll().Select(r => new SelectListItem()

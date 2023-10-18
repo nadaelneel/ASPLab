@@ -39,10 +39,11 @@ namespace Repository
             base.Delete(pro);
             
         }
-        public IQueryable<Product> Search(int ID,
+        public PaginationViewModel<List<ProductViewModel>> Search(int ID,
             string Name,
             double Price,
             string CategoryName,
+            int CategoryID = 0,
             string orderBy ="ID",
             bool isAssending = true,
             int PageSize=3 ,
@@ -63,12 +64,26 @@ namespace Repository
             {
                 Filter = Filter.And(i => i.Price <= Price);
             }
+            if(CategoryID !=0)
+            {
+                Filter = Filter.And(i => i.CategoryID == CategoryID);
+            }
             if(oldfilter == Filter)
             {
                 Filter = null;
             }
+            var count = (Filter != null) ? GetAll().Where(Filter).Count() : base.GetAll().Count();
+            var result = base.search(Filter,orderBy,isAssending,PageSize,Pageindex);
 
-            return base.search(Filter,orderBy,isAssending,PageSize,Pageindex);
+            return new PaginationViewModel<List<ProductViewModel>>()
+            {
+                PageIndex = Pageindex,
+                PageSize = PageSize,
+                Count = count,
+                Data = result.Select(i=>i.ToViewModel()).ToList()
+
+            };
+
         }
 
         public void Edit(AddProductViewModel newPrd)

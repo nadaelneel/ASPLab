@@ -38,6 +38,16 @@ namespace Repository
                 query = query.Where(filter);
             }
             query = query.OrderBy(isAssending, orderBy);
+            if (Pageindex < 1)
+            {
+                Pageindex = 1;
+            }
+          
+            var temp = GetAll().Count() / Convert.ToDouble(PageSize);
+            if (Pageindex > temp + 1)
+            {
+                Pageindex = 1;
+            }
             int toSkip = (Pageindex - 1) * PageSize;
             query = query.Skip(toSkip).Take(PageSize);
             return query;
